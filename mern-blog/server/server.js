@@ -10,6 +10,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Add after middleware
+const postRoutes = require('./routes/postRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+
+app.use('/api/posts', postRoutes);
+app.use('/api/categories', categoryRoutes);
+
 // Database connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
